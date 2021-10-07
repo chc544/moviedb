@@ -36,5 +36,3 @@
 <main class="flex-shrink-0">
 
     <?php include 'menu.php'; ?>
-
-    <div class="top-spacer"></div>

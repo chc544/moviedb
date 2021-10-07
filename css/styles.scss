@@ -6,7 +6,22 @@
 }
 
 .btn-primary {
-  border-radius: 99999px;
+  border-radius: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.ratingsmall {
+  display: inline;
+}
+
+.ratingbig {
+  display: none;
+}
+
+.card-title {
+  text-align: center;
+  margin-top: .5rem;
 }
 
 .selectpicker {
@@ -145,6 +160,10 @@
   color: #198754;
 }
 
+.fa-star {
+  color: #ffc700;
+}
+
 .subheading {
   color: black;
   font-style: italic;
@@ -212,6 +231,10 @@ label {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.h6 {
+  text-align: center;
+}
+
 @media only screen and (min-width: 960px) {
   .navbar .navbar-nav .nav-item .nav-link {
     padding: 0 3em;
@@ -221,5 +244,11 @@ label {
   }
   .navbar .btn {
     margin-right: 3em;
+  }
+  .ratingsmall {
+    display: none;
+  }
+  .ratingbig {
+    display: inline;
   }
 }

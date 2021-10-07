@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 py-2">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">MovieDB</a>
                 </li>
@@ -21,11 +21,6 @@
                     <a class="nav-link" href="insert.php">Add Movie/Show</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2 search-class" type="search" placeholder="Search movies..."
-                       aria-label="Search">
-                <button class="btn btn-outline-white" type="submit"><i class="fas fa-search"></i></button>
-            </form>
         </div>
     </div>
 </nav>
