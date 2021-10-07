@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: localhost:8889
--- Genereringstid: 17. 09 2021 kl. 17:50:19
+-- Genereringstid: 07. 10 2021 kl. 03:22:41
 -- Serverversion: 5.7.32
 -- PHP-version: 7.4.12
 
@@ -13,6 +13,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `moviedb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `genre`
+--
+
+CREATE TABLE `genre` (
+  `genId` int(11) NOT NULL,
+  `genName` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Data dump for tabellen `genre`
+--
+
+INSERT INTO `genre` (`genId`, `genName`) VALUES
+(1, 'Action'),
+(2, 'Comedy'),
+(3, 'Drama'),
+(4, 'Fantasy'),
+(5, 'Horror'),
+(6, 'Mystery'),
+(7, 'Romance'),
+(8, 'Sci-Fi'),
+(9, 'Thriller');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `genreconmovie`
+--
+
+CREATE TABLE `genreconmovie` (
+  `movId` int(11) NOT NULL,
+  `genId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -28,14 +65,50 @@ CREATE TABLE `movie` (
   `movRating` decimal(1,0) DEFAULT NULL,
   `movActors` text NOT NULL,
   `movProducers` text NOT NULL,
-  `movCategory` varchar(100) NOT NULL,
   `movType` varchar(10) NOT NULL,
-  `movReview` text NOT NULL
+  `movReview` text NOT NULL,
+  `movImg` varchar(100) DEFAULT NULL,
+  `movCat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Data dump for tabellen `movie`
+--
+
+INSERT INTO `movie` (`movId`, `movName`, `movDesc`, `movRelDate`, `movRating`, `movActors`, `movProducers`, `movType`, `movReview`, `movImg`, `movCat`) VALUES
+(7, 'Avengers: Endgame', '<p>After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</p>', '2019-04-24', '4', 'Robert Downey Jr. - Chris Evans - Mark Ruffalo', ' Anthony Russo - Joe Russo', 'Movie', '<p>As always avengers didn\'t disappoint even with a few loops or inconsistencies. Hope marvel does more movies about some characters from avengers.</p>', 'aveng.jpg', 'Action'),
+(8, 'The Shawshank Redemption', '<p>Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.</p>', '1995-04-28', '4', 'Tim Robbins - Morgan Freeman - Bob Gunton', 'Frank Darabont', 'Movie', '<p>I have never seen such an amazing film since I saw The Shawshank Redemption. Shawshank encompasses friendships, hardships, hopes, and dreams. And what is so great about the movie is that it moves you, it gives you hope. Even though the circumstances between the characters and the viewers are quite different, you don\'t feel that far removed from what the characters are going through.</p>', 'shaw.jpg', 'Drama'),
+(9, 'The Godfather', '<p>An organized crime dynasty\'s aging patriarch transfers control of his clandestine empire to his reluctant son.</p>', '1972-03-23', '4', 'Marlon Brando - Al Pacino - James Caan', 'Francis Ford Coppola', 'Movie', '<p>This movie is strong, good script, great casting, excellent acting, and over the top directing. It is hard to fine a movie done this well, it is 29 years old and has aged well. Even if the viewer does not like mafia type of movies, he or she will watch the entire film, the audiences is glued to what will happen next as the film progresses. Its about, family, loyalty, greed, relationships, and real life. This is a great mix, and the artistic style make the film memorable.</p>', 'godf.jpg', 'Drama'),
+(10, 'Batman: The Dark Knight', '<p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.</p>', '2008-03-11', '4', 'Christian Bale - Heath Ledger - Aaron Eckhart', ' Christopher Nolan', 'Movie', '<p>Totally one of the greatest movie titles ever made. Everything was great, filming, acting, story. Nothing to complain about.</p>', 'darkknight.jpg', 'Action'),
+(11, 'Schindler\'s List', '<p>In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.</p>', '1993-11-25', '4', ' Liam Neeson - Ralph Fiennes - Ben Kingsley', 'Steven Spielberg', 'Movie', '<p>I have only ever seen this film once, I only ever want to see this film once and I will only ever need to see this film once. It is etched on my mind. I, like many others, left in silence. I could not imagine inventing a critical analysis of this film, picking small points of detail or of style, or even scoring points off the Director. It stands alone as a monumental piece of cinema, a magnificent accomplishment.</p>', 'schi.jpg', 'Drama'),
+(12, 'Forrest Gump', '<p>The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.</p>', '1994-06-29', '4', 'Tom Hanks - Robin Wright - Gary Sinise', 'Robert Zemeckis', 'Movie', '<p>Tom Hanks has become our new Jimmy Stewart. His roles are about human emotion and dedication. He is the everyman in many ways. Obviously, the subject matter has changed, but you can bank on his decision making when it comes to film.<br /><br />The other heroes are the special effects people. They are able to make this work; to create an incredible world for him to function within. The news clips are quite marvelous. I usually put this film in my top ten.</p>', 'forre.jpg', 'Drama'),
+(13, '1917', '<p>April 6th, 1917. As a regiment assembles to wage war deep in enemy territory, two soldiers are assigned to race against time and deliver a message that will stop 1,600 men from walking straight into a deadly trap.</p>', '2019-06-28', '4', 'Dean-Charles Chapman - George MacKay - Daniel Mays', 'Sam Mendes', 'Movie', '<p>1917 is a poem. Is the most deep, impressive and realistic way of seeing what kinds of things happened in WWI. This movie made me leave the movies with tears in my eyes as if I have had a time travel experience to the World War I, and then waking up and realizing how wonderful are the times we are living in. 1917 is a must see movie for everyone.</p>', '1917.jpg', 'Action'),
+(14, 'Joker', '<p>In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.</p>', '2019-12-07', '4', 'Joaquin Phoenix - Robert De Niro - Zazie Beetz', 'Todd Phillips', 'Movie', '<p>I\'ve seen this film twice now at the IMAX, and it just gets better. Like everyone else I expect (as with Rami Malek last year) that Joaquin Phoenix will be a shoe-in for all of the major Best Actor awards (he is currently better than odds-on in the UK for both the BAFTA &amp; the Oscar) and very deservedly so. His almost schizophrenic performance is both sensitive and brutal; haunting and terrifying in equal measure; the screenplay is engrossing and Todd Phillips keeps you captivated for a terrific two hours of cinema. Given current events in Hong Kong and, to a lesser extent, the activities of Extinction Revolution; the ending depicted here does not seem nearly as far-fetched as it ought to!! Super stuff!</p>', 'joker.jpg', 'Thriller'),
+(15, 'Scary Movie', '<p>A year after disposing of the body of a man they accidentally killed, a group of dumb teenagers are stalked by a bumbling serial killer.</p>', '2000-11-17', '3', 'Anna Faris - Jon Abrahams - Marlon Wayans', 'Keenen Ivory Wayans', 'Movie', '<p>Very funny comedy from the Wayan team. It\'s a take on all the recent teen horror flicks, and it does it superbly well. I hate noise in cinemas while I\'m watching a film, but I couldn\'t keep quiet, I was laughing out loud, and I even shouted at the screen. Now I have never done that before. The gags, from one liners to the set pieces, are so funny, watch out for the sex scene and the gym teacher - I almost wet myself. This ranks next to Airplane as one of the top ten funnies.</p>', 'scarym.jpg', 'Comedy'),
+(16, 'Iron Man', '<p>After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.</p>', '2008-06-20', '4', ' Robert Downey Jr. - Gwyneth Paltrow - Terrence Howard', 'Jon Favreau', 'Movie', '<p>I finally saw this movie last night on DVD. Despite doing exceptionally well at the box office, I just never was that interested in seeing IRON MAN and only watched it after a friend gave me the DVD. In hindsight, I am glad I saw it, but think you should know at the onset that I am not a huge fan of superheros and comic books. This means that the film did manage to win me over but also that I have no knowledge of the story nor do I have the devotion to it that a typical fan might have. Take this for what you will.</p>', 'iron.jpg', 'Action'),
+(17, 'A Quiet Place', '<p>In a post-apocalyptic world, a family is forced to live in silence while hiding from monsters with ultra-sensitive hearing.</p>', '2018-06-14', '4', ' Emily Blunt - John Krasinski - Millicent Simmonds', 'John Krasinski', 'Movie', '<p>A Quiet Place starts with racking up the tension which doesn\'t let up in a nerve shredding 1hr 25. The premise is simple, we get no back story as to why the family have to stay silent, but within 5 minutes with an unexpected moment we can see what the consequence of making noise is. From then on our focus is on this one family as they strive to stay safe in what seems like a helpless situation. I enjoyed this film immensely. I found it to be nerve shredding and so tense to watch i had to try catch my breath a few occasions as i had been holding it so long. It is the silence for a majority of the film that makes this work and i was grateful for a silent cinema hall (this i will go back to) I found myself caring for the characters (rare in horror) and hoping for a positive outcome. It also doesn\'t suffer from an overlong run time and imo is not for the mostpart predictable.</p>', 'aquie.jpg', 'Horror'),
+(18, 'Free Guy', '<p>A bank teller discovers that he\'s actually an NPC inside a brutal, open world video game.</p>', '2021-09-09', '3', 'Ryan Reynolds - Jodie Comer - Taika Waititi', 'Shawn Levy', 'Movie', '<p>This movie was much better than I expected. It was enjoyable throughout, paced well, and cast exceptionally. The major strength of this movie is in how damn likeable this cast is. I\'m not sure anyone could have done this other than Ryan Reynolds. I\'d recommend a watch.</p>', 'freeg.jpg', 'Comedy'),
+(19, 'Old', '<p>A vacationing family discovers that the secluded beach where they\'re relaxing for a few hours is somehow causing them to age rapidly, reducing their entire lives into a single day.</p>', '2021-07-08', '3', 'Gael García Bernal - Vicky Krieps - Rufus Sewell', 'M. Night Shyamalan', 'Movie', '<p>You can\'t fault M. Night Shyamalan for not trying. The premise of the film may be preposterous, but it\'s certainly original and an intriguing new playing field for horror to unfold. It\'s in the execution where it often stumbles. Choosing consistently to swing wide, leading to some over the top scenarios that can come off unintentionally hilarious. Some clunky dialogue and stiff performances also add to the overall cheesiness. Then there\'s the mandatory Shyamalan twist that also displays some writing ingenuity, but is too much of a logical stretch to totally take seriously.</p>', 'old.jpg', 'Mystery'),
+(20, 'Venom', '<p>A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth. But the being takes a liking to Earth and decides to protect it.</p>', '2018-06-15', '3', 'Tom Hardy - Michelle Williams - Riz Ahmed', 'Ruben Fleischer', 'Movie', '<p>I don\'t know what\'s going on with all the negative reviews. People are really hard to please! I went to see that movie without any real expectations and I thoroughly enjoyed it.</p>\r\n<ul style=\"list-style-type: initial;\">\r\n<li>Tom Hardy does a fantastic job</li>\r\n<li>Venom is an interesting and fun character</li>\r\n<li>The plot is fairly classic for this type of movie; nothing good or bad about it</li>\r\n<li>The special effects are great - I loved the transformation scenes.</li>\r\n</ul>\r\n<p>Overall, I recommend it if you like the genre, want to have a good time with a dose of laughters and aren\'t overly hard to please.</p>', 'venom.jpg', 'Action'),
+(21, 'Candyman', '<p>A sequel to the horror film Candyman (1992) that returns to the now-gentrified Chicago neighborhood where the legend began.</p>', '2021-09-30', '3', ' Yahya Abdul-Mateen II - Teyonah Parris - Nathan Stewart Jarrett', 'Nia DaCosta', 'Movie', '<p>It was bound to happen eventually. Jordan Peeled name was going to be attached to a bad movie. This thing was predictable from the very opening shot If you had seen the first Candyman. Just nothing scary. Mostly just a bunch of absurd nonsense.</p>', 'candy.jpg', 'Horror'),
+(22, 'Casino Royale', '<p>After earning 00 status and a licence to kill, secret agent James Bond sets out on his first mission as 007. Bond must defeat a private banker funding terrorists in a high-stakes game of poker at Casino Royale, Montenegro.</p>', '2006-10-26', '4', 'Daniel Craig - Eva Green - Judi Dench', 'Martin Campbell', 'Movie', '<p>Hey, I\'m sorry but I\'ve watched all James Bond movies since the inception of the character first on screen in 1962 in \"Dr. No.\" I have seen all the people who played Bond. Almost all of the time it was either Sean Connery, Roger Moore or Pierce Brosnan. They all were suave, cool guys who might have been tough underneath but were classy and right at home in a tuxedo, and had a great sense of humor.<br /><br />This new guy, Daniel Craig, looks like a thug and acts like one. He\'s about as classy as your average rugby player. Give me a break!</p>', 'casinjo.jpg', 'Action');
 
 --
 -- Begrænsninger for dumpede tabeller
 --
+
+--
+-- Indeks for tabel `genre`
+--
+ALTER TABLE `genre`
+  ADD PRIMARY KEY (`genId`);
+
+--
+-- Indeks for tabel `genreconmovie`
+--
+ALTER TABLE `genreconmovie`
+  ADD KEY `movId` (`movId`),
+  ADD KEY `genId` (`genId`);
 
 --
 -- Indeks for tabel `movie`
@@ -48,7 +121,24 @@ ALTER TABLE `movie`
 --
 
 --
+-- Tilføj AUTO_INCREMENT i tabel `genre`
+--
+ALTER TABLE `genre`
+  MODIFY `genId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- Tilføj AUTO_INCREMENT i tabel `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `movId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- Begrænsninger for dumpede tabeller
+--
+
+--
+-- Begrænsninger for tabel `genreconmovie`
+--
+ALTER TABLE `genreconmovie`
+  ADD CONSTRAINT `genreconmovie_ibfk_1` FOREIGN KEY (`movId`) REFERENCES `movie` (`movId`),
+  ADD CONSTRAINT `genreconmovie_ibfk_2` FOREIGN KEY (`genId`) REFERENCES `genre` (`genId`);
